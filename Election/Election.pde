@@ -3,7 +3,7 @@
  */
 
 // window size (it's a square)
-final int WINDOW_SIZE = 400;
+final int WINDOW_SIZE = 1000;
 // how many milliseconds to show each state for
 final int MILLIS_PER_STATE= 1000;
  
@@ -30,11 +30,21 @@ void setup() {
   data = new ElectionData(loadStrings("data/2012_US_election_state.csv"));
   statePostalCodes = data.getAllStatePostalCodes();
   print("Loaded data for "+data.getStateCount()+" states");
+  //colorMode(HSB, width, height, 100);
 }
 
 /**
  * This is called repeatedly
  */
+   void pieChart(int diameter, float[] data) {
+  float lastAngle = 0;
+  for (int i = 0; i < data.length; i++) {
+    data[i] = data[i]*3.6;
+    fill(50+i*101,50,250+i*-200);
+    arc(width/2, height/2, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
+    lastAngle += radians(data[i]);
+  }}
+ 
 void draw() {
   // only update if it's has been MILLIS_PER_STATE since the last time we updated
   if (millis() - lastStateMillis >= MILLIS_PER_STATE) {
@@ -60,6 +70,10 @@ void draw() {
     currentStateIndex = (currentStateIndex+1) % statePostalCodes.length;
     // update the last time we drew a state
     lastStateMillis = millis();
+    float[] angles = {Math.round(state.pctForObama), Math.round(state.pctForRomney)};
+    pieChart(300, angles);
   }
+
+  
 }
 
