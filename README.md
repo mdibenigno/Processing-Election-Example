@@ -1,3 +1,5 @@
+Updated to include a Pie Chart (Michael DiBenigno)
+
 election-example
 ================
 
@@ -23,3 +25,5 @@ The data was sourced from the Guardian Data Blog. Their state data seems accurat
 incomplete.  Their county data looked suspicious to me.  Good enough for this playground.
 
 http://www.guardian.co.uk/news/datablog/2012/nov/07/us-2012-election-county-results-download
+
+
